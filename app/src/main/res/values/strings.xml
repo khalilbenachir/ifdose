@@ -1,0 +1,154 @@
+<resources>
+    <string name="app_name">حاسب الأنسولين</string>
+    <!--prod ou dev-->
+    <string name="app_mode" translatable="false">dev</string>
+    <string name="bugfender_app_key" translatable="false">Mv3uSQeVUjcKBwkwr1uk7cvrfxaTrY9a</string>
+
+    <!-- Preferences -->
+    <string name="medecin_email" translatable="false">ifdose@gmail.com</string>
+
+    <!--Test env-->
+    <!--<string name="host_adr" translatable="false">http://192.168.1.5</string>-->
+    <!--<string name="host_port" translatable="false">8000</string>-->
+
+    <!--Prod env-->
+    <string name="host_adr" translatable="false">http://test-gi.ump.ma</string>
+    <string name="host_port" translatable="false">80</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_password">الكود</string>
+    <string name="action_sign_in">تسجيل الدخول</string>
+    <string name="action_sign_in_short" translatable="false">Sign in</string>
+    <string name="title_activity_form" translatable="false">FormActivity</string>
+
+    <!--Test env-->
+    <!--<string name="urlCategories" translatable="false">/api/categories</string>-->
+    <!--<string name="urlLogin" translatable="false">/api/users/pass=</string>-->
+    <!--<string name="urlAlim" translatable="false">/api/aliments/id=</string>-->
+    <!--<string name="urlAlims" translatable="false">/api/aliments/category_id=</string>-->
+    <!--<string name="urlPost" translatable="false">/api/aliment/name=</string>-->
+    <!--<string name="urlPostRapport" translatable="false">/api/rapport/id=</string>-->
+    <!--<string name="urlGeneratePDF" translatable="false">/api/sendReport</string>-->
+
+    <!--Prod env-->
+    <string name="urlCategories" translatable="false">/gcalpha/api/categories</string>
+    <string name="urlLogin" translatable="false">/gcalpha/api/users/pass=</string>
+    <string name="urlAlim" translatable="false">/gcalpha/api/aliments/id=</string>
+    <string name="urlAlims" translatable="false">/gcalpha/api/aliments/category_id=</string>
+    <string name="urlPost" translatable="false">/gcalpha/api/aliment/name=</string>
+    <string name="urlPostRapport" translatable="false">/gcalpha/api/rapport/id=</string>
+    <string name="urlGeneratePDF" translatable="false">/gcalpha/api/sendReport</string>
+
+    <string name="pref_previously_started" translatable="false">pref_prev_started_key</string>
+    <string name="action_settings">الاٍعدادات</string>
+    <string name="title_activity_glycemies" translatable="false">GlycemiesActivity</string>
+    <string name="title_activity_rapport" translatable="false">RapportActivity</string>
+    <string name="alert_msg">هنالك مشكل المرجو التأكد</string>
+    <string name="alert_btn_ok">رجوع</string>
+    <string name="alert_btn_parametres">الإعدادات</string>
+    <string name="title_activity_pdf_print">PdfPrintActivity</string>
+    <string name="large_text">
+        "Material is the metaphor.\n\n"
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+        "technologically advanced and open to imagination and magic.\n"
+        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
+        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
+        "flexibility of the material creates new affordances that supercede those in the physical "
+        "world, without breaking the rules of physics.\n"
+        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
+        "interact, and exist in space and in relation to each other. Realistic lighting shows "
+        "seams, divides space, and indicates moving parts.\n\n"
+    </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_meal">إضافة الأكلة</string>
+    <string name="meal_qt">كمية الأكلة :</string>
+    <string name="meal_type">نوع الأكلة :</string>
+    <string name="meal_name">إسم الأكلة :</string>
+    <string name="add_new_meal">إضافة أكلة جديدة</string>
+    <string name="glucose_avant_repas">الجلوكوز قبل الوجبة :</string>
+    <string name="glucose_qt">كمية الجلوكوز</string>
+    <string name="login_password">كلمة المرور</string>
+    <string name="activity_calcul_title">حساب الجلوكوز</string>
+    <string name="meal">الوجبة</string>
+    <string name="calcul_type">طريقة الحساب</string>
+    <string name="categories">أنواع المأكولات :</string>
+    <string name="type_here_hint">أكتب هنا</string>
+    <string name="quantite">الكمية :</string>
+    <string name="add_btn">أضف</string>
+    <string name="aliments_menu">قائمة المأكولات :</string>
+    <string name="calcul_now_btn">أحسب الآن</string>
+    <string name="activite_physique">أنشطة رياضية :</string>
+    <string name="aliments">المأكولات :</string>
+    <string name="uniteInsulineValue"></string>
+    <string name="totalGlucoValue"></string>
+    <string name="pdfSendingErrorMsg">المرجو إنشاء التقرير قبل محاولة الإرسال</string>
+    <string name="infos_perso">البيانات الشخصية</string>
+    <string name="gluco_concentration">تركيز السكر</string>
+    <string name="rapport_generation">طبع التقرير</string>
+    <string name="calcul_btn">الحساب</string>
+    <string name="rapport_btn">تقريري</string>
+    <string name="add_meal_btn">إضافة وجبة</string>
+    <string name="activity_show_calc_title">ملخص حساب الأنسولين</string>
+    <string name="meal_glucide_qt">نسبة الجلوكوز في الوجبة :</string>
+    <string name="unite_a_injecter">نسبة الأنسولين الواجب حقنها :</string>
+    <string name="unite_injecte_confirme">نسبة الأنسولين المؤكد حقنها :</string>
+    <string name="btn_confirmer">تأكيد</string>
+    <string name="report_sent_succeded">تم ارسال التقرير بنجاح</string>
+    <string name="report_sent_failed">لم يتم الارسال بنجاح</string>
+    <string name="btn_send_report">ارسال التقرير</string>
+    <string name="send_report_tv">ارسال التقرير اليومي الى الطبيب</string>
+    <string name="print_report">طباعة التقرير</string>
+    <string name="permission_denied">Permission denied</string>
+    <string name="generateing_pdf">طبع التقرير</string>
+    <string name="pdf_printed">تم طبع التقرير</string>
+    <string name="report_info_sent_success">تم ارسال المعلومات بنجاح</string>
+    <string name="report_info_sent_fail">لم يتم الارسال</string>
+    <string name="send_daily_report_btn">ارسال التقرير اليومي</string>
+    <string name="insulin_confirme_tv">نسبة الأنسولين المؤكد حقنها :</string>
+    <string name="insuline_calcule_tv">نسبة الأنسولين الواجب حقنها:</string>
+    <string name="glucide_apres_4_tv">بعد 4 ساعات</string>
+    <string name="glucide_avant_repas_tv">الجلوكوز قبل الوجبة :</string>
+    <string name="save_glucide_apres4_btn">حفظ</string>
+    <string name="add_meal_success">تمت إضافة الأكلة بنجاح</string>
+    <string name="add_meal_fail">لم يتم إضافة الأكلة</string>
+    <string name="notification_title">IFDose | حاسب الأنسولين</string>
+    <string name="notification_text">المرجو الضغط على الإشعار لإدخال قيمة الجلوكوز بعد 4 ساعات</string>
+    <string name="pref_debug" translatable="false">Debug</string>
+    <string name="choose_category">اختيار نوع الأكلة</string>
+    <string name="add_comment">إضافة تعليق</string>
+    <string name="onBackPressed_message">هل أنت متأكد من الخروج ؟</string>
+    <string name="onBackPressed_title">تحذير</string>
+
+
+
+    <string-array name="meal_type">
+        <item>الفطور</item>
+        <item>الغذاء</item>
+        <item>وجبة خفيفة</item>
+        <item>العشاء</item>
+    </string-array>
+
+    <string-array name="calcul_type">
+        <item>Avec livret</item>
+        <item>Sans livret</item>
+    </string-array>
+
+    <string-array name="unite">
+        <item>غرام</item>
+        <item>مل</item>
+        <item>قطعة</item>
+        <item>طبق</item>
+        <item>كاس</item>
+    </string-array>
+
+    <string-array name="activite_physique">
+        <item>لا شيء</item>
+        <item>ضعيفة</item>
+        <item>متوسطة</item>
+        <item>قوية</item>
+    </string-array>
+
+</resources>

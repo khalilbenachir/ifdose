@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="الاٍعدادات">
+        <EditTextPreference
+            android:defaultValue="@string/host_adr"
+            android:icon="@drawable/ic_language_black_24dp"
+            android:key="host_url"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="عنوان الموقع" />
+
+        <EditTextPreference
+            android:defaultValue="@string/host_port"
+            android:icon="@drawable/ic_language_black_24dp"
+            android:key="host_port"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="المنفذ" />
+
+        <EditTextPreference
+            android:defaultValue="@string/medecin_email"
+            android:icon="@drawable/ic_email_black_24dp"
+            android:key="medecin_email"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="البريد الالكتروني للطبيب" />
+
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:enabled="false"
+            android:icon="@drawable/ic_bug_report_black_24dp"
+            android:key="pref_debug"
+            android:singleLine="true"
+            android:title="@string/pref_debug" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

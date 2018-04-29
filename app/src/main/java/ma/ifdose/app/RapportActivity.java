@@ -15,10 +15,7 @@ public class RapportActivity extends AppCompatActivity {
         setContentView(ma.ifdose.app.R.layout.activity_rapport);
     }
 
-   public void onClick_1(View v) {
-        Intent i = new Intent(this, ProfilActivity.class);
-        startActivity(i);
-    }
+
 
 
     public void onGenerateRapportBtnClick(View v) {
@@ -26,10 +23,7 @@ public class RapportActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void onClick_3(View v) {
-        Intent i = new Intent(this, GlycemiesActivity3.class);
-        startActivity(i);
-    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

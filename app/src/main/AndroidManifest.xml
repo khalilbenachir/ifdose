@@ -82,6 +82,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ma.ifdose.app.WelcomeActivity" />
         </activity>
+        <activity
+            android:name="ma.ifdose.app.dailyInfosActivity"
+        />
     </application>
 
 </manifest>

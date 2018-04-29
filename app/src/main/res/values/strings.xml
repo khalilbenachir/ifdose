@@ -121,6 +121,13 @@
     <string name="add_comment">إضافة تعليق</string>
     <string name="onBackPressed_message">هل أنت متأكد من الخروج ؟</string>
     <string name="onBackPressed_title">تحذير</string>
+    <string name="daily_infos"> جدولي اليومي </string>
+    <string name="evolutions"> التطلع على تطوراتي </string>
+    <string name="dailyRep"> تقريري اليومي </string>
+
+
+
+
 
 
 

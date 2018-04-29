@@ -154,18 +154,19 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
-            <Button
-                android:id="@+id/buttonAdd"
-                style="@style/BtnWrapContentStyle"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="8dp"
-                android:onClick="onClickAdd"
-                android:text="أضف"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/quantiteGram" />
+        <Button
+            android:id="@+id/buttonAdd"
+            style="@style/BtnWrapContentStyle"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorPrimaryDarker"
+            android:onClick="onClickAdd"
+            android:text="أضف"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/quantiteGram" />
 
             <TextView
                 android:id="@+id/textView7"
@@ -226,14 +227,15 @@
             app:layout_constraintTop_toBottomOf="@+id/tvActivitePhysique" />
 
         <Button
-                android:id="@+id/buttontCalcul"
+            android:id="@+id/buttontCalcul"
             style="@style/Btn250dpStyle"
             android:layout_marginBottom="32dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
-                android:onClick="onClickCalcul"
-                android:text="أحسب الآن"
+            android:background="@color/colorAccent"
+            android:onClick="onClickCalcul"
+            android:text="أحسب الآن"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

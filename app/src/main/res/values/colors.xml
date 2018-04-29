@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#1976d2</color>
-    <color name="colorPrimaryDark">#0d47a1</color>
-    <color name="colorAccent">#cccfdc</color>
+    <color name="colorPrimary">#41CAC6</color>
+    <color name="statusBar">#34C1BD</color>
+    <color name="colorPrimaryDark">#4FA3D2</color>
+    <color name="colorPrimaryDarker">#4873A6</color>
+    <color name="colorAccent">#5a538a</color>
+    <color name="colorAccentTwo">#554269</color>
     <!--<color name="colorPrimary">#e53935</color>-->
     <!--<color name="colorPrimaryDark">#c62828</color>-->
     <!--<color name="colorAccent">#cccfdc</color>-->
 
-    <color name="primary">#e53935</color>
+    <!--<color name="primary">#e53935</color>-->
+    <color name="primary">#c62828</color>
     <color name="primary_dark">#d32f2f</color>
     <color name="primary_darker">#c62828</color>
     <color name="accent">#FFFFFF</color>

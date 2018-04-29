@@ -16,6 +16,7 @@ public class WelcomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(ma.ifdose.app.R.layout.activity_welcome);
+
 //        Log.i(TAG, "Started " + TAG);
         Timber.i("App started");
     }
@@ -37,17 +38,22 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     public void onClick_1(View v) {
-        Intent i = new Intent(this, RapportActivity.class);
+        Intent i = new Intent(this, CalculActivity.class);
         startActivity(i);
     }
 
-    public void onClick(View v) {
-        Intent i = new Intent(this, CalculActivity.class);
+    public void onClick_2(View v) {
+        Intent i = new Intent(this, dailyInfosActivity.class);
         startActivity(i);
-        }
+    }
 
     public void onClick_3(View v) {
         Intent i = new Intent(this, AddMealActivity.class);
+        startActivity(i);
+    }
+
+    public void onClick_4(View v) {
+        Intent i = new Intent(this, GenerateRapportActivity.class);
         startActivity(i);
     }
 

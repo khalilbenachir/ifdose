@@ -53,7 +53,8 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
     private static double rd = 1, rp = 1, rc = 1, rdi = 1, is = 1, obj = 1;
-    private static String firstName, lastName;
+    private static String firstName, lastName, sexe, tel;
+    private static int age;
     private static String host, port;
     SharedPreferences.Editor edit;
     Intent intent;
@@ -155,6 +156,12 @@ public class LoginActivity extends AppCompatActivity {
                                 id = patient.getString("id");
                                 firstName = patient.getString("nom");
                                 lastName = patient.getString("prenom");
+                                if (!patient.isNull("sexe"))
+                                    sexe = patient.getString("sexe");
+                                if (!patient.isNull("age"))
+                                    age = patient.getInt("age");
+                                if (!patient.isNull("telephone"))
+                                    tel = patient.getString("telephone");
 
                                 if (!patient.isNull("ratioPetitDej"))
                                     rp = patient.getDouble("ratioPetitDej");
@@ -171,6 +178,9 @@ public class LoginActivity extends AppCompatActivity {
 
                                 edit.putString("nom", firstName);
                                 edit.putString("pren", lastName);
+                                edit.putString("sexe", sexe);
+                                edit.putInt("age", age);
+                                edit.putString("tel", tel);
                                 edit.putFloat("rp", (float) rp);
                                 edit.putFloat("rd", (float) rd);
                                 edit.putFloat("rc", (float) rc);

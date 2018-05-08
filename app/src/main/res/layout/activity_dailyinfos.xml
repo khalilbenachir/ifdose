@@ -1,74 +1,93 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@color/colorPrimaryDark"
     android:fillViewport="true"
+    android:orientation="vertical"
     tools:context="com.ifdose.app.ma.ifdose.app.WelcomeActivity">
 
-    <android.support.constraint.ConstraintLayout
+    <TextView
+        android:id="@+id/dailyInfos_title"
+        style="@style/ActivityTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:minHeight="180dp">
+        android:layout_marginTop="16dp"
+        android:text="@string/daily_infos"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick_1">
 
         <Button
             android:id="@+id/buttongran6"
             style="@style/BtnDailyInfosStyle"
+            android:layout_width="match_parent"
             android:onClick="onClick_1"
+            android:paddingRight="120dp"
+            android:paddingTop="20dp"
             android:text="@string/gluco_concentration"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dailyInfos_title" />
+            android:textAlignment="viewEnd" />
+
+        <ImageView
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/buttongran6"
+            android:layout_alignEnd="@+id/buttongran6"
+            android:layout_alignParentLeft="false"
+            android:layout_alignRight="@+id/buttongran6"
+            android:layout_alignTop="@+id/buttongran6"
+            android:layout_marginRight="30dp"
+            android:elevation="2dp"
+            android:onClick="onClick_1"
+            android:src="@drawable/gluco" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick_2">
 
         <Button
             android:id="@+id/button"
             style="@style/BtnDailyInfosStyle"
-            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
             android:onClick="onClick_2"
+            android:paddingRight="120dp"
+            android:paddingTop="20dp"
             android:text="@string/infos_perso"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttongran6" />
+            android:textAlignment="viewEnd" />
 
-        <Button
-            android:id="@+id/button6"
-            style="@style/BtnDailyInfosStyle"
-            android:layout_marginTop="16dp"
-            android:text="@string/evolutions"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button" />
-
-        <TextView
-            android:id="@+id/dailyInfos_title"
-            style="@style/ActivityTitle"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/daily_infos"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_alignBottom="@+id/button"
+            android:layout_alignEnd="@+id/button"
+            android:layout_alignParentLeft="false"
+            android:layout_alignRight="@+id/button"
+            android:layout_alignTop="@+id/button"
+            android:layout_marginRight="25dp"
+            android:elevation="2dp"
+            android:onClick="onClick_2"
+            android:src="@drawable/infos" />
 
-        <android.support.constraint.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="20dp" />
+    </RelativeLayout>
 
-    </android.support.constraint.ConstraintLayout>
-</ScrollView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick_2">
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -81,7 +81,7 @@ public class CalculActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private Context context;
     private Aliment food = null;
-    private String category_id;
+//    private String category_id;
     private Spinner categoriesSpinner, UniteesSpinner,
             mealSP, calculTypeSP, activitePhysiqueSP;
     private AutoCompleteTextView alimentsAutoComp;
@@ -229,7 +229,7 @@ public class CalculActivity extends AppCompatActivity {
         listView = (ListView) findViewById(ma.ifdose.app.R.id.listFood);
         btnAddAliment = (Button) findViewById(ma.ifdose.app.R.id.buttonAdd);
         btnCalcul = (Button) findViewById(ma.ifdose.app.R.id.buttontCalcul);
-        categoriesSpinner = (Spinner) findViewById(ma.ifdose.app.R.id.categoryFood);
+//        categoriesSpinner = (Spinner) findViewById(ma.ifdose.app.R.id.categoryFood);
         alimentsAutoComp = (AutoCompleteTextView) findViewById(ma.ifdose.app.R.id.food);
         UniteesSpinner = (Spinner) findViewById(ma.ifdose.app.R.id.unite);
         activitePhysiqueSP = (Spinner) findViewById(ma.ifdose.app.R.id.spActivitePhysique);
@@ -237,7 +237,7 @@ public class CalculActivity extends AppCompatActivity {
         calculTypeSP = (Spinner) findViewById(ma.ifdose.app.R.id.calculTypeSP);
         qauntite = (EditText) findViewById(ma.ifdose.app.R.id.quantiteGram);
         glucideET = (EditText) findViewById(ma.ifdose.app.R.id.glucideET);
-        categoryFoodTV = (TextView) findViewById(ma.ifdose.app.R.id.categoryFoodTV);
+//        categoryFoodTV = (TextView) findViewById(ma.ifdose.app.R.id.categoryFoodTV);
         foodTV = (TextView) findViewById(ma.ifdose.app.R.id.foodTV);
         quantiteGramTV = (TextView) findViewById(ma.ifdose.app.R.id.quantiteGramTV);
         listFoodTV = (TextView) findViewById(ma.ifdose.app.R.id.listFoodTV);
@@ -252,6 +252,8 @@ public class CalculActivity extends AppCompatActivity {
         // get the note DAO
         daoSession = ((App) getApplication()).getDaoSession();
         alimentDao = daoSession.getAlimentDao();
+        JsonFoodsURL = host + ":" + port + getString(ma.ifdose.app.R.string.urlAlims);
+        getAliments();
 
         dropDownArrow2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -260,7 +262,7 @@ public class CalculActivity extends AppCompatActivity {
             }
         });
 
-        categoriesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        /*categoriesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 JsonFoodsURL = host + ":" + port + getString(ma.ifdose.app.R.string.urlAlims);
@@ -277,7 +279,7 @@ public class CalculActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
-        });
+        });*/
 
         // affichage suivant le type de calcul
         calculTypeSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -289,10 +291,10 @@ public class CalculActivity extends AppCompatActivity {
                     Timber.i("avec livret");
                     Toast.makeText(getBaseContext(), "avec livret", Toast.LENGTH_SHORT).show();
 
-                    categoryFoodTV.setVisibility(View.VISIBLE);
+//                    categoryFoodTV.setVisibility(View.VISIBLE);
                     foodTV.setVisibility(View.VISIBLE);
                     quantiteGramTV.setVisibility(View.VISIBLE);
-                    categoriesSpinner.setVisibility(View.VISIBLE);
+//                    categoriesSpinner.setVisibility(View.VISIBLE);
                     alimentsAutoComp.setVisibility(View.VISIBLE);
                     UniteesSpinner.setVisibility(View.VISIBLE);
                     qauntite.setVisibility(View.VISIBLE);
@@ -309,10 +311,10 @@ public class CalculActivity extends AppCompatActivity {
                     Timber.i("sans livret");
                     Toast.makeText(getBaseContext(), "sans livret", Toast.LENGTH_SHORT).show();
 
-                    categoryFoodTV.setVisibility(View.GONE);
+//                    categoryFoodTV.setVisibility(View.GONE);
                     foodTV.setVisibility(View.GONE);
                     quantiteGramTV.setVisibility(View.GONE);
-                    categoriesSpinner.setVisibility(View.GONE);
+//                    categoriesSpinner.setVisibility(View.GONE);
                     alimentsAutoComp.setVisibility(View.GONE);
                     UniteesSpinner.setVisibility(View.GONE);
                     qauntite.setVisibility(View.GONE);
@@ -332,7 +334,7 @@ public class CalculActivity extends AppCompatActivity {
         });
 
 
-        getCategories();
+    //    getCategories();
         adapter = new selectedAdapter(foodsSelected, context, mTouchListener);
         listView.setAdapter(adapter);
         calculTypeSP.setSelection(0, true);
@@ -432,7 +434,7 @@ public class CalculActivity extends AppCompatActivity {
         return 0;
     }
 
-    private void getCategories() {
+/*    private void getCategories() {
 
         //Creating a string request
         StringRequest stringRequest = new StringRequest(JsonCatURL,
@@ -473,7 +475,7 @@ public class CalculActivity extends AppCompatActivity {
         }
         //Setting adapter to show the items in the spinner
         categoriesSpinner.setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item, categories));
-    }
+    }*/
 
     private void getAliments() {
         StringRequest stringRequest = new StringRequest(JsonFoodsURL, new Response.Listener<String>() {
@@ -504,8 +506,8 @@ public class CalculActivity extends AppCompatActivity {
 
     private void getAlimentsList(JSONArray j) {
         try {
-            aliments.clear();
-            map1.clear();
+ //           aliments.clear();
+ //           map1.clear();
 
             for (int i = 0; i < j.length(); i++) {
                 JSONObject json = j.getJSONObject(i);
@@ -515,7 +517,7 @@ public class CalculActivity extends AppCompatActivity {
 
             List<ma.ifdose.app.db.Aliment> alimentsDB = alimentDao
                     .queryBuilder()
-                    .where(AlimentDao.Properties.Category_id.eq(category_id))
+                    /*.where(AlimentDao.Properties.Category_id.eq(category_id))*/
                     .list();
 
             Timber.i("Local aliments : " + alimentsDB.size());
@@ -672,19 +674,19 @@ public class CalculActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if(listView.getAdapter().getCount()!=0) {
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.onBackPressed_title)
-                .setMessage(R.string.onBackPressed_message)
-                .setNegativeButton("إلغاء", null)
-                .setPositiveButton("نعم", new DialogInterface.OnClickListener() {
+            new AlertDialog.Builder(this)
+                    .setTitle(R.string.onBackPressed_title)
+                    .setMessage(R.string.onBackPressed_message)
+                    .setNegativeButton("إلغاء", null)
+                    .setPositiveButton("نعم", new DialogInterface.OnClickListener() {
 
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        startActivity(new Intent(CalculActivity.this, WelcomeActivity.class));
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            startActivity(new Intent(CalculActivity.this, WelcomeActivity.class));
 
-                    }
-                }).create().show();
+                        }
+                    }).create().show();
 
-    }
+        }
         else {
             startActivity(new Intent(CalculActivity.this, WelcomeActivity.class));
         }

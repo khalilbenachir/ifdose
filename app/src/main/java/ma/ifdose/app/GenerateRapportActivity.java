@@ -60,7 +60,8 @@ public class GenerateRapportActivity extends AppCompatActivity {
 
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     protected static String fName = "", lName = "", alimentsPDej = "", alimentsDej = "",
-            alimentsCol = "", alimentsDin = "", age;
+            alimentsCol = "", alimentsDin = "", sexe="", tel="";
+    protected static int age ;
     protected static float rd, rp, rc, rdi, is, obj;
     protected static float r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14, r15, r16;
     protected static String c1,c2,c3,c4;
@@ -151,6 +152,9 @@ public class GenerateRapportActivity extends AppCompatActivity {
 
         fName = sp.getString("nom", "Nom");
         lName = sp.getString("pren", "Prenom");
+        sexe = sp.getString("sexe","-");
+        age = sp.getInt("age",0);
+        tel = sp.getString("tel","");
 
 
         rd = sp.getFloat("rd", 0);
@@ -301,11 +305,12 @@ public class GenerateRapportActivity extends AppCompatActivity {
 
     public void printDocumentIText() {
 
-        Font bigFont = new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD);
-        Font bigFontBlue = new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD, new BaseColor(79,163,210));
-        Font darkFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.ITALIC, BaseColor.DARK_GRAY);
-        Font boldFont = new Font(Font.FontFamily.TIMES_ROMAN, 13, Font.BOLD);
-        Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
+        //Font normalFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, new BaseColor(33,33,33));
+        Font darkBoldFont = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.NORMAL, new BaseColor(33,33,33));
+        Font boldFont = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLD, new BaseColor(1,57,102));
+        Font titleFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD ,new BaseColor(1,87,155));
+        Font smallTitleFont = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.NORMAL, new BaseColor(33,33,33));
+        Font smallTitleFontB = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLD, new BaseColor(33,33,33));
 
         BaseFont myBaseFont = null;
         try {
@@ -313,7 +318,7 @@ public class GenerateRapportActivity extends AppCompatActivity {
         } catch (Exception e) {
             Timber.e("" + e.getMessage());
         }
-        Font normalFont = new Font(myBaseFont, 12, Font.NORMAL);
+        Font normalFont = new Font(myBaseFont, 12, Font.NORMAL, new BaseColor(33,33,33));
 //        Font normalFont = new Font("Cairo-Regular.ttf", 12, Font.NORMAL);
 
 
@@ -349,13 +354,66 @@ public class GenerateRapportActivity extends AppCompatActivity {
             Document document = new Document(PageSize.A4.rotate());
             PdfWriter.getInstance(document, output);
             document.open();
-            document.add(new Paragraph("Rapport du jour " + getCurrentDate(format2), darkFont));
-            document.add(new Paragraph("Nom : " + fName + " " + lName.toUpperCase(), bigFontBlue));
 
             // load image
-           /* try {
+            try {
                 // get input stream
                 InputStream ims = getAssets().open("logo.png");
+                Bitmap bmp = BitmapFactory.decodeStream(ims);
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                Image image = Image.getInstance(stream.toByteArray());
+                image.setAlignment(Image.ALIGN_CENTER);
+//                image.scaleAbsolute(75f, 75f);
+                document.add(image);
+            } catch (Exception ex) {
+                Timber.e(ex.getMessage());
+            }
+
+            Paragraph title = new Paragraph("Rapport du jour " + getCurrentDate(format2), titleFont);
+            title.setAlignment(Element.ALIGN_CENTER);
+            document.add(title);
+            document.add( Chunk.NEWLINE );
+
+            /*document.add(new Paragraph("Nom : " + fName + " " + lName.toUpperCase(), darkFont));
+            document.add(new Paragraph("Sexe :"+ sexe ,darkFont));
+            document.add(new Paragraph("Age :"+ age ,darkFont));
+            document.add(new Paragraph("Telephone :"+ tel ,darkFont));*/
+
+            PdfPTable profilTable =new PdfPTable(2);
+            profilTable.setWidthPercentage(100);
+            Paragraph p;
+
+            p = new Paragraph("Nom : " + fName + " " + lName.toUpperCase(), smallTitleFontB);
+            profilTable.addCell(getCell(p,PdfPCell.ALIGN_LEFT));
+            p = new Paragraph("Ratio de petit dejeuner : " + rp, smallTitleFont);
+            profilTable.addCell(getCell(p,PdfPCell.ALIGN_RIGHT));
+            p = new Paragraph("Sexe :"+ sexe ,smallTitleFontB);
+            profilTable.addCell(getCell(p,PdfPCell.ALIGN_LEFT));
+            p = new Paragraph("Ratio de dejeuner         : " + rd, smallTitleFont);
+            profilTable.addCell(getCell(p,PdfPCell.ALIGN_RIGHT));
+            p = new Paragraph("Age :"+ age ,smallTitleFontB);
+            profilTable.addCell(getCell(p,PdfPCell.ALIGN_LEFT));
+            p = new Paragraph("Ratio de collation         : " + rc, smallTitleFont);
+            profilTable.addCell(getCell(p,PdfPCell.ALIGN_RIGHT));
+            p = new Paragraph("Telephone :"+ tel ,smallTitleFontB);
+            profilTable.addCell(getCell(p,PdfPCell.ALIGN_LEFT));
+            p = new Paragraph("Ratio de dinner             : " + rdi, smallTitleFont);
+            profilTable.addCell(getCell(p,PdfPCell.ALIGN_RIGHT));
+            p = new Paragraph("");
+            profilTable.addCell(getCell(p,PdfPCell.ALIGN_LEFT));
+            p = new Paragraph("Indice de sensibilite      : " + is, smallTitleFont);
+            profilTable.addCell(getCell(p,PdfPCell.ALIGN_RIGHT));
+            p = new Paragraph("");
+            profilTable.addCell(getCell(p,PdfPCell.ALIGN_LEFT));
+            p = new Paragraph("Objectif                         : " + obj, smallTitleFont);
+            profilTable.addCell(getCell(p,PdfPCell.ALIGN_RIGHT));
+
+            document.add(profilTable);
+            // load image
+           /*try {
+                // get input stream
+                InputStream ims = getAssets().open("logo2.png");
                 Bitmap bmp = BitmapFactory.decodeStream(ims);
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
@@ -377,16 +435,16 @@ public class GenerateRapportActivity extends AppCompatActivity {
 //            section1.add(someSectionText);
 //            document.add(Chunk.NEWLINE);
 
-            document.add(new Chunk(lineSep));
+//            document.add(new Chunk(lineSep));
 
-            document.add(new Paragraph("Ratio de petit dejeuner : " + rp));
+            /*document.add(new Paragraph("Ratio de petit dejeuner : " + rp));
             document.add(new Paragraph("Ratio de dejeuner         : " + rd));
             document.add(new Paragraph("Ratio de collation          : " + rc));
             document.add(new Paragraph("Ratio de dinner             : " + rdi));
             document.add(new Paragraph("Indice de sensibilite      : " + is));
-            document.add(new Paragraph("Objective                    : " + obj));
+            document.add(new Paragraph("Objective                    : " + obj));*/
 
-            document.add(new Chunk(lineSep));
+            //           document.add(new Chunk(lineSep));
             document.add(Chunk.NEWLINE);
 
             PdfPTable table = new PdfPTable(8);
@@ -438,7 +496,7 @@ public class GenerateRapportActivity extends AppCompatActivity {
             table.addCell(cell);
             //--------------------------------------------------------------
             // 3rd row
-            cell = new PdfPCell(new Phrase("Petit dejeuner"));
+            cell = new PdfPCell(new Phrase("Petit dejeuner", darkBoldFont));
             table.addCell(cell);
 
 //            PdfPTable t1 = new PdfPTable(3);
@@ -481,7 +539,7 @@ public class GenerateRapportActivity extends AppCompatActivity {
 
             //--------------------------------------------------------------
             // 4th row
-            cell = new PdfPCell(new Phrase("Dejeuner"));
+            cell = new PdfPCell(new Phrase("Dejeuner",darkBoldFont));
             table.addCell(cell);
 
             PdfPTable t2 = new PdfPTable(2);
@@ -521,7 +579,7 @@ public class GenerateRapportActivity extends AppCompatActivity {
             table.addCell(cell);
             //--------------------------------------------------------------
             // 5th row
-            cell = new PdfPCell(new Phrase("Collation"));
+            cell = new PdfPCell(new Phrase("Collation", darkBoldFont));
             table.addCell(cell);
 
             PdfPTable t3 = new PdfPTable(2);
@@ -561,7 +619,7 @@ public class GenerateRapportActivity extends AppCompatActivity {
             table.addCell(cell);
             //--------------------------------------------------------------
             // 6th row
-            cell = new PdfPCell(new Phrase("Dinner"));
+            cell = new PdfPCell(new Phrase("Dinner", darkBoldFont));
             table.addCell(cell);
             PdfPTable t4 = new PdfPTable(2);
             if (a4.length >= 1) {
@@ -698,6 +756,14 @@ public class GenerateRapportActivity extends AppCompatActivity {
         Calendar c = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat(format);
         return df.format(c.getTime());
+    }
+    // a fonction to get a personalized cell to represent the patient infos
+    public PdfPCell getCell(Paragraph paragraph, int alignment) {
+        PdfPCell cell = new PdfPCell(paragraph);
+        cell.setPadding(0);
+        cell.setHorizontalAlignment(alignment);
+        cell.setBorder(PdfPCell.NO_BORDER);
+        return cell;
     }
 
 }

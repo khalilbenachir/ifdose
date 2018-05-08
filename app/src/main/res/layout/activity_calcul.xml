@@ -7,13 +7,14 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="wrap_content"
+        android:alignmentMode="alignBounds"
+        android:useDefaultMargins="true">
 
         <TextView
             android:id="@+id/activityCalculTitleTV"
-            style="@style/ActivityTitle"
-            android:layout_width="match_parent"
+            style="@style/TextViewTitleStyle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
@@ -23,29 +24,30 @@
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textDirection="rtl"
+            android:textSize="24sp"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/card_view_1"
-            android:layout_width="0dp"
+            android:id="@+id/card_view"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:elevation="0dp"
-            card_view:cardCornerRadius="4dp"
-            card_view:cardElevation="24dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="4dp"
+            android:elevation="14dp"
+            card_view:cardCornerRadius="0dp"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@id/activityCalculTitleTV">
+            card_view:layout_constraintTop_toBottomOf="@+id/activityCalculTitleTV">
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp"
                 android:paddingTop="16dp">
 
                 <TextView
@@ -53,140 +55,123 @@
                     style="@style/TextViewTitleStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:layoutDirection="rtl"
                     android:text="@string/meal"
                     android:textDirection="rtl"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    card_view:layout_constraintStart_toStartOf="parent"
-                    card_view:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@id/activityCalculTitleTV" />
 
                 <Spinner
                     android:id="@+id/mealSP"
                     style="@style/SpinnerStyle"
                     android:layout_width="0dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
-                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:entries="@array/meal_type"
                     android:layoutDirection="rtl"
                     android:spinnerMode="dialog"
                     android:textDirection="rtl"
+                    app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/mealTV"
-                    card_view:layout_constraintEnd_toEndOf="parent"
-                    card_view:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/mealTV" />
 
                 <TextView
                     android:id="@+id/calculTypeTV"
                     style="@style/TextViewTitleStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
-                    android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     android:layoutDirection="rtl"
                     android:text="@string/calcul_type"
                     android:textDirection="rtl"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/mealSP"
-                    card_view:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@id/mealSP" />
 
                 <Spinner
                     android:id="@+id/calculTypeSP"
                     style="@style/SpinnerStyle"
                     android:layout_width="0dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
                     android:layout_marginTop="8dp"
                     android:entries="@array/calcul_type"
                     android:layoutDirection="rtl"
                     android:spinnerMode="dialog"
                     android:textDirection="rtl"
-                    app:layout_constraintTop_toBottomOf="@+id/calculTypeTV"
-                    card_view:layout_constraintEnd_toEndOf="parent"
-                    card_view:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/calculTypeTV" />
 
                 <TextView
                     android:id="@+id/glucoAvantRepasTV"
                     style="@style/TextViewTitleStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
                     android:layout_marginTop="16dp"
                     android:layoutDirection="rtl"
                     android:text="@string/glucose_avant_repas"
                     android:textDirection="rtl"
-                    app:layout_constraintTop_toBottomOf="@id/calculTypeSP"
-                    card_view:layout_constraintEnd_toEndOf="parent"
-                    card_view:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/calculTypeSP" />
 
                 <EditText
                     android:id="@+id/glucoAvantRepas"
                     style="@style/EditTextStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
                     android:layout_marginTop="8dp"
                     android:hint="@string/type_here_hint"
                     android:inputType="numberDecimal"
                     android:layoutDirection="rtl"
                     android:textDirection="rtl"
-                    app:layout_constraintTop_toBottomOf="@+id/glucoAvantRepasTV"
-                    card_view:layout_constraintEnd_toEndOf="parent"
-                    card_view:layout_constraintStart_toStartOf="parent" />
-
-                <TextView
-                    android:id="@+id/categoryFoodTV"
-                    style="@style/TextViewTitleStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="16dp"
-                    android:layoutDirection="rtl"
-                    android:text="@string/categories"
-                    android:textDirection="rtl"
-                    app:layout_constraintTop_toBottomOf="@+id/glucoAvantRepas"
-                    card_view:layout_constraintEnd_toEndOf="parent"
-                    card_view:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/glucoAvantRepasTV" />
 
                 <TextView
                     android:id="@+id/foodTV"
                     style="@style/TextViewTitleStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="8dp"
                     android:text="@string/aliments"
-                    app:layout_constraintTop_toBottomOf="@+id/categoryFood"
-                    card_view:layout_constraintEnd_toEndOf="parent"
-                    card_view:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/glucoAvantRepas" />
 
                 <TextView
                     android:id="@+id/quantiteGramTV"
                     style="@style/TextViewTitleStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="32dp"
                     android:layoutDirection="rtl"
                     android:paddingLeft="5dp"
                     android:text="@string/quantite"
                     android:textDirection="rtl"
-                    app:layout_constraintTop_toBottomOf="@+id/food"
-                    card_view:layout_constraintEnd_toEndOf="parent"
-                    card_view:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/food" />
 
                 <EditText
                     android:id="@+id/quantiteGram"
@@ -195,7 +180,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="16dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     android:hint="@string/type_here_hint"
                     android:inputType="numberDecimal"
                     app:layout_constraintHorizontal_weight="3"
@@ -223,81 +208,26 @@
                 <Button
                     android:id="@+id/buttonAdd"
                     style="@style/BtnWrapContentStyle"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
                     android:layout_marginTop="8dp"
-
                     android:background="@color/colorPrimaryDarker"
                     android:onClick="addAliment"
                     android:text="@string/add_btn"
-                    app:layout_constraintTop_toBottomOf="@+id/quantiteGram"
-                    card_view:layout_constraintEnd_toEndOf="parent"
-                    card_view:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/quantiteGram" />
 
-                <AutoCompleteTextView
-                    android:id="@+id/food"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="7dp"
-                    android:layoutDirection="rtl"
-                    android:textDirection="rtl"
-                    app:layout_constraintTop_toBottomOf="@+id/foodTV"
-                    card_view:layout_constraintEnd_toEndOf="parent"
-                    card_view:layout_constraintStart_toStartOf="parent" />
-
-                <ImageView
-                    android:id="@+id/dropDownImage2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
                     android:layout_marginTop="8dp"
-                    android:src="@mipmap/ic_arrow_drop_down_black_24dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/food"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/food" />
-
-                <Spinner
-                    android:id="@+id/categoryFood"
-                    style="@style/SpinnerStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="7dp"
-                    android:layoutDirection="rtl"
-                    android:spinnerMode="dialog"
-                    android:textDirection="rtl"
-                    app:layout_constraintTop_toBottomOf="@+id/categoryFoodTV"
-                    card_view:layout_constraintEnd_toEndOf="parent"
-                    card_view:layout_constraintStart_toStartOf="parent" />
-
-
-            </android.support.constraint.ConstraintLayout>
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/card_view_2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            card_view:cardCornerRadius="4dp"
-            card_view:cardElevation="14dp"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@id/card_view_1">
-
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="16dp"
-                android:layout_marginTop="16dp"
-                android:paddingBottom="16dp"
-                android:paddingTop="16dp">
+                    android:background="@color/base"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/buttonAdd" />
 
                 <TextView
                     android:id="@+id/listFoodTV"
@@ -306,12 +236,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
+                    android:layout_marginTop="16dp"
                     android:layoutDirection="rtl"
                     android:paddingLeft="5dp"
                     android:text="@string/aliments_menu"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/card_view_2" />
+                    app:layout_constraintTop_toBottomOf="@+id/divider" />
 
                 <ListView
                     android:id="@+id/listFood"
@@ -392,7 +323,7 @@
                 <Button
                     android:id="@+id/buttontCalcul"
                     style="@style/Btn250dpStyle"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="32dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginTop="16dp"
@@ -404,11 +335,35 @@
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/spActivitePhysique" />
 
+                <AutoCompleteTextView
+                    android:id="@+id/food"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="7dp"
+                    android:hint="@string/type_here_hint"
+                    android:layoutDirection="rtl"
+                    android:textDirection="rtl"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/foodTV" />
+
+                <ImageView
+                    android:id="@+id/dropDownImage2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@mipmap/ic_arrow_drop_down_black_24dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/food"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/food" />
+
             </android.support.constraint.ConstraintLayout>
+
         </android.support.v7.widget.CardView>
-
-
-
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
 

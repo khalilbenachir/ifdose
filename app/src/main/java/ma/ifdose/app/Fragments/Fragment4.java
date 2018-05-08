@@ -23,6 +23,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONObject;
 
+import ma.ifdose.app.GenerateRapportActivity;
 import ma.ifdose.app.GlycemiesActivity3;
 import ma.ifdose.app.R;
 import ma.ifdose.app.Singleton.HttpSingleton;
@@ -62,7 +63,7 @@ public class Fragment4 extends Fragment{
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_4, container, false) ;
         btnSave = (Button) rootView.findViewById(R.id.sauvegard);
-        btnSendData = (Button) rootView.findViewById(R.id.sendData);
+        btnSendData = (Button) rootView.findViewById(R.id.printData);
         t1 = (TextView) rootView.findViewById(R.id.t1);
         t4=(EditText) rootView.findViewById(R.id.t2);
         t2= (TextView) rootView.findViewById(R.id.t3) ;
@@ -111,12 +112,14 @@ public class Fragment4 extends Fragment{
         btnSendData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                postRapport();
+                 Intent i = new Intent(getActivity(), GenerateRapportActivity.class);
+                 startActivity(i);
             }
         });
         return rootView ;
 
     }
+
 
 
 
@@ -197,5 +200,8 @@ public class Fragment4 extends Fragment{
 
         queue.add(postRequest);
     }
+
+
+
 
 }

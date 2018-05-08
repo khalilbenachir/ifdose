@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:background="@color/colorPrimaryDark"
-    tools:context="com.ifdose.app.ma.ifdose.app.GenerateRapportActivity">
+    android:fillViewport="true"
+    android:orientation="vertical"
+    tools:context="com.ifdose.app.ma.ifdose.app.GenerateRapportActivity"
+    >
 
     <!--<android.support.design.widget.AppBarLayout-->
     <!--android:layout_width="match_parent"-->
@@ -19,46 +20,85 @@
     <!--android:layout_width="match_parent"-->
     <!--android:layout_height="match_parent">-->
 
-    <android.support.constraint.ConstraintLayout
+
+    <TextView
+        android:id="@+id/tv"
+        style="@style/ActivityTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="180dp">
+        android:layout_marginTop="16dp"
+        android:text="@string/dailyRep"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv"
-            style="@style/ActivityTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/dailyRep"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="generatePdfServer">
 
         <Button
             android:id="@+id/generate_btn"
             style="@style/BtnDailyInfosStyle"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_width="match_parent"
+            android:layout_marginTop="30dp"
             android:onClick="generatePdfServer"
+            android:paddingRight="120dp"
+            android:paddingTop="20dp"
             android:text="@string/btn_send_report"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv" />
+            android:textAlignment="viewEnd" />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/generate_btn"
+            android:layout_alignEnd="@+id/generate_btn"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentRight="true"
+            android:layout_alignRight="@+id/generate_btn"
+            android:layout_alignTop="@+id/generate_btn"
+            android:layout_marginEnd="34dp"
+            android:layout_marginRight="34dp"
+            android:elevation="2dp"
+            android:onClick="onClick_1"
+            android:paddingTop="10dp"
+            android:src="@drawable/send_message" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="generatePdfV2">
 
         <Button
             android:id="@+id/generate_btn_v2"
             style="@style/BtnDailyInfosStyle"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
             android:onClick="generatePdfV2"
+            android:paddingRight="120dp"
+            android:paddingTop="20dp"
             android:text="@string/print_report"
-            app:layout_constraintHorizontal_bias="0.25"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/generate_btn" />
+            android:textAlignment="viewEnd" />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/generate_btn_v2"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/generate_btn_v2"
+            android:layout_marginEnd="34dp"
+            android:layout_marginRight="34dp"
+            android:elevation="2dp"
+            android:onClick="generatePdfV2"
+            android:paddingTop="10dp"
+            android:src="@drawable/printer" />
+
+    </RelativeLayout>
         <!--
         <Button
             android:id="@+id/generate_btn"
@@ -107,8 +147,6 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/email_send_btn" />-->
 
-    </android.support.constraint.ConstraintLayout>
-
+</LinearLayout>
     <!--</ScrollView>-->
 
-</ScrollView>

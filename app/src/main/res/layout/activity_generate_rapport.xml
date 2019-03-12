@@ -99,53 +99,84 @@
             android:src="@drawable/printer" />
 
     </RelativeLayout>
-        <!--
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
         <Button
-            android:id="@+id/generate_btn"
-            style="@style/Btn250dpStyle"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="16dp"
-            android:onClick="generatePdf"
-            android:text="@string/btn_send_report"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv" />
-        <Button
-            android:id="@+id/generate_btn_v2"
-            style="@style/Btn250dpStyle"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="8dp"
+            android:id="@+id/connect_btn"
+            style="@style/BtnDailyInfosStyle"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:onClick="onClick_3"
+            android:paddingRight="120dp"
+            android:paddingTop="20dp"
+            android:text="@string/doctor_messages"
+            android:textAlignment="viewEnd" />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/connect_btn"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/connect_btn"
+            android:layout_marginEnd="34dp"
+            android:layout_marginRight="34dp"
+            android:elevation="2dp"
             android:onClick="generatePdfV2"
-            android:text="generer v2"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/generate_btn" />
+            android:paddingTop="10dp"
+            android:src="@drawable/doctor" />
+    </RelativeLayout>
 
-        <Button
-            android:id="@+id/email_send_btn"
-            style="@style/Btn250dpStyle"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="8dp"
-            android:onClick="sendEmailOnClick"
-            android:text="envoyer en email"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/generate_btn_v2" />
+    <!--
+    <Button
+        android:id="@+id/generate_btn"
+        style="@style/Btn250dpStyle"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:onClick="generatePdf"
+        android:text="@string/btn_send_report"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv" />
+    <Button
+        android:id="@+id/generate_btn_v2"
+        style="@style/Btn250dpStyle"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:onClick="generatePdfV2"
+        android:text="generer v2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/generate_btn" />
 
-        <Button
-            android:id="@+id/pdf_view_btn"
-            style="@style/Btn250dpStyle"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="8dp"
-            android:onClick="generatePdfServer"
-            android:text="generer PDF coté serveur"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/email_send_btn" />-->
+    <Button
+        android:id="@+id/email_send_btn"
+        style="@style/Btn250dpStyle"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:onClick="sendEmailOnClick"
+        android:text="envoyer en email"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/generate_btn_v2" />
+
+    <Button
+        android:id="@+id/pdf_view_btn"
+        style="@style/Btn250dpStyle"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:onClick="generatePdfServer"
+        android:text="generer PDF coté serveur"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/email_send_btn" />-->
 
 </LinearLayout>
     <!--</ScrollView>-->

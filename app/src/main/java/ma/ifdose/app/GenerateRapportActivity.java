@@ -3,6 +3,7 @@ package ma.ifdose.app;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -61,7 +62,7 @@ public class GenerateRapportActivity extends AppCompatActivity {
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     protected static String fName = "", lName = "", alimentsPDej = "", alimentsDej = "",
             alimentsCol = "", alimentsDin = "", sexe="", tel="";
-    protected static int age ;
+    protected static int age ,count;
     protected static float rd, rp, rc, rdi, is, obj;
     protected static float r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14, r15, r16;
     protected static String c1,c2,c3,c4;
@@ -150,6 +151,7 @@ public class GenerateRapportActivity extends AppCompatActivity {
 
     public void getSPProperties() {
 
+        count = sp.getInt("count" ,0);
         fName = sp.getString("nom", "Nom");
         lName = sp.getString("pren", "Prenom");
         sexe = sp.getString("sexe","-");
@@ -358,7 +360,7 @@ public class GenerateRapportActivity extends AppCompatActivity {
             // load image
             try {
                 // get input stream
-                InputStream ims = getAssets().open("logo.png");
+                InputStream ims = getAssets().open("header_2.png");
                 Bitmap bmp = BitmapFactory.decodeStream(ims);
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
@@ -700,7 +702,7 @@ public class GenerateRapportActivity extends AppCompatActivity {
                 + "&gluco2=" + gluco2 + "&gluco3=" + gluco3
                 + "&c1" + c1 +"&c2" + c2 +"&c3" + c3 +"&c4" + c4
                 + "&rp=" + rp + "&rd=" + rd + "&rc=" + rc
-                + "&rdi=" + rdi + "&is=" + is + "&obj=" + obj;
+                + "&rdi=" + rdi + "&is=" + is + "&obj=" + obj +"&nbVisite" + count;
 
         generatePDF += params;
 
@@ -764,6 +766,11 @@ public class GenerateRapportActivity extends AppCompatActivity {
         cell.setHorizontalAlignment(alignment);
         cell.setBorder(PdfPCell.NO_BORDER);
         return cell;
+    }
+
+    public void onClick_3(View v) {
+        Intent i = new Intent(this, MessageListActivity.class);
+        startActivity(i);
     }
 
 }

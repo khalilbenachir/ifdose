@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final int REQUEST_SIGNUP = 0;
     private static double rd = 1, rp = 1, rc = 1, rdi = 1, is = 1, obj = 1;
     private static String firstName, lastName, sexe, tel;
-    private static int age;
+    private static int age, c=0;
     private static String host, port;
     SharedPreferences.Editor edit;
     Intent intent;
@@ -176,6 +176,7 @@ public class LoginActivity extends AppCompatActivity {
                                 if (!patient.isNull("Objectif"))
                                     obj = patient.getDouble("Objectif");
 
+                                edit.putInt("count",c);
                                 edit.putString("nom", firstName);
                                 edit.putString("pren", lastName);
                                 edit.putString("sexe", sexe);

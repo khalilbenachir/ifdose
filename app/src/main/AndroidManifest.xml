@@ -19,7 +19,7 @@
         android:name="ma.ifdose.app.App"
         android:enabled="true"
         android:hardwareAccelerated="true"
-        android:icon="@mipmap/ic_launcher_2"
+        android:icon="@mipmap/ic_launcher_5"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:supportsRtl="true"
@@ -60,20 +60,18 @@
         <activity
             android:name="ma.ifdose.app.ProfilActivity"
             android:label="@string/app_name"
-            android:parentActivityName="ma.ifdose.app.RapportActivity" />
-        <activity
-            android:name="ma.ifdose.app.RapportActivity"
-            android:parentActivityName="ma.ifdose.app.WelcomeActivity" />
+            android:parentActivityName="ma.ifdose.app.GenerateRapportActivity" />
         <activity
             android:name="ma.ifdose.app.GlycemiesActivity3"
-            android:parentActivityName="ma.ifdose.app.RapportActivity" />
+            android:parentActivityName="ma.ifdose.app.GenerateRapportActivity" />
         <activity android:name="ma.ifdose.app.MesAlimentsActivity" />
         <activity
             android:name="ma.ifdose.app.CalculActivity"
             android:parentActivityName="ma.ifdose.app.WelcomeActivity" />
         <activity
             android:name="ma.ifdose.app.GenerateRapportActivity"
-            android:parentActivityName="ma.ifdose.app.RapportActivity" />
+            android:parentActivityName="ma.ifdose.app.WelcomeActivity"
+            />
         <activity
             android:name="ma.ifdose.app.SettingsActivity"
             android:label="Settings"
@@ -84,7 +82,10 @@
         </activity>
         <activity
             android:name="ma.ifdose.app.dailyInfosActivity"
+            android:parentActivityName="ma.ifdose.app.WelcomeActivity"
         />
+        <activity android:name=".MessageListActivity"
+            android:parentActivityName=".GenerateRapportActivity"/>
     </application>
 
 </manifest>

@@ -96,7 +96,7 @@
     <!-- ***Btn styles*** -->
     <style name="BtnStyle" parent="Widget.AppCompat.Button">
         <!--<item name="android:background">@color/colorPrimary</item>-->
-        <item name="android:background">@drawable/button_simple</item>
+        <item name="android:background">@drawable/btn_round_edges_blue</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">14sp</item>

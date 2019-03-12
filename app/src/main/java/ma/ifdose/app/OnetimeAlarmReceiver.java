@@ -45,9 +45,9 @@ public class OnetimeAlarmReceiver extends BroadcastReceiver {
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context)
                 .setContentTitle(notificationTitle)
                 .setContentText(notificationText)
-                .setSmallIcon(ma.ifdose.app.R.drawable.ic_notifications_active_black_24dp)
+                .setSmallIcon(ma.ifdose.app.R.drawable.ic_stat_drop)
                 .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
-                        ma.ifdose.app.R.mipmap.ic_launcher))
+                        ma.ifdose.app.R.mipmap.ic_launcher_5))
                 .setContentIntent(pIntent)
                 .setAutoCancel(true)
                 .setSound(alarmSound)

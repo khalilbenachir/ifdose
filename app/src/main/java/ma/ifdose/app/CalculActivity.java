@@ -64,6 +64,7 @@ public class CalculActivity extends AppCompatActivity {
 
     public static final String KEY_NAME = "name";
     public static final String KEY_ID = "id";
+    public int count;
     public static final String JSON_ARRAY = "categories";
     public static final String JSON_ARRAY_2 = "aliments";
     private final static String TAG = "CalculActivity";
@@ -75,14 +76,11 @@ public class CalculActivity extends AppCompatActivity {
     Network network;
     ListView listView;
     JSONObject jsonApi;
-    SharedPreferences.Editor editGlyc;
-    private Toolbar toolbar;
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
+    SharedPreferences.Editor editGlyc, edit;
     private Context context;
     private Aliment food = null;
 //    private String category_id;
-    private Spinner categoriesSpinner, UniteesSpinner,
+    private Spinner UniteesSpinner,
             mealSP, calculTypeSP, activitePhysiqueSP;
     private AutoCompleteTextView alimentsAutoComp;
     private TextView categoryFoodTV, foodTV, quantiteGramTV, listFoodTV, tvGlucide;
@@ -108,6 +106,7 @@ public class CalculActivity extends AppCompatActivity {
     private StringBuilder alimentsDuJour;
     private DaoSession daoSession;
     private AlimentDao alimentDao;
+    private String name, unite,q;
     private View.OnTouchListener mTouchListener = new View.OnTouchListener() {
         float mDownX;
         private int mSwipeSlop = -1;
@@ -224,6 +223,7 @@ public class CalculActivity extends AppCompatActivity {
         queue = HttpSingleton.getInstance(this.getBaseContext()).getRequestQueue();
         queue.start();
         spGlycemies = context.getSharedPreferences("glycemies", Context.MODE_PRIVATE);
+        edit = sp.edit();
         editGlyc = spGlycemies.edit();
         glucideAvantRepas = (EditText) findViewById(ma.ifdose.app.R.id.glucoAvantRepas);
         listView = (ListView) findViewById(ma.ifdose.app.R.id.listFood);
@@ -243,11 +243,10 @@ public class CalculActivity extends AppCompatActivity {
         listFoodTV = (TextView) findViewById(ma.ifdose.app.R.id.listFoodTV);
         tvGlucide = (TextView) findViewById(ma.ifdose.app.R.id.tvGlucide);
         alimentsDuJour = new StringBuilder();
-        ImageView dropDownArrow2;
+        final ImageView dropDownArrow2;
         dropDownArrow2 = (ImageView) findViewById(R.id.dropDownImage2);
         alimentsAutoComp.setThreshold(1);
-
-
+        count =sp.getInt("count",0);
 
         // get the note DAO
         daoSession = ((App) getApplication()).getDaoSession();
@@ -316,6 +315,7 @@ public class CalculActivity extends AppCompatActivity {
                     quantiteGramTV.setVisibility(View.GONE);
 //                    categoriesSpinner.setVisibility(View.GONE);
                     alimentsAutoComp.setVisibility(View.GONE);
+                    dropDownArrow2.setVisibility(View.GONE);
                     UniteesSpinner.setVisibility(View.GONE);
                     qauntite.setVisibility(View.GONE);
                     UniteesSpinner.setVisibility(View.GONE);
@@ -346,9 +346,9 @@ public class CalculActivity extends AppCompatActivity {
         } else {
             JsonFoodURL = host + ":" + port + getString(ma.ifdose.app.R.string.urlAlim);
             food = new Aliment();
-            String name = alimentsAutoComp.getText().toString();
-            String unite = UniteesSpinner.getSelectedItem().toString();
-            String q = String.valueOf(qauntite.getText());
+            name = alimentsAutoComp.getText().toString();
+            unite = UniteesSpinner.getSelectedItem().toString();
+            q = String.valueOf(qauntite.getText());
             int id = map1.get(name);
             food.setNom(name);
             food.setQuantiteA(q + " " + unite);
@@ -372,6 +372,7 @@ public class CalculActivity extends AppCompatActivity {
                 foodsSelected.add(food);
                 setListViewHeightBasedOnChildren(listView);
                 alimentsDuJour.append(name + " : " + q + " " + unite + ";");
+                //Toast.makeText(context, "لقد تمت الإضافة", Toast.LENGTH_SHORT).show();
             }
 
         }
@@ -383,6 +384,10 @@ public class CalculActivity extends AppCompatActivity {
             Toast.makeText(context, "المرجو ادخال نسبة الجلوكوز قبل الوجبة ", Toast.LENGTH_SHORT)
                     .show();
         } else {
+            count = count + 1;
+            edit.putInt("count", count);
+            edit.commit();
+            Timber.i("nombre de visite :"+count);
             g = Double.parseDouble(String.valueOf(glucideAvantRepas.getText()));
             Intent i = new Intent(context, ShowCalculActivity.class);
             i.putExtra("glucoAvantRepas", g);
@@ -488,8 +493,12 @@ public class CalculActivity extends AppCompatActivity {
                     //Storing the Array of JSON String to our JSON Array
                     result = j.getJSONArray(JSON_ARRAY_2);
                     getAlimentsList(result);
+                    PreferenceManager.getDefaultSharedPreferences(context).edit()
+                                .putString("foodJson",j.toString()).apply();
+
                 } catch (JSONException e) {
                     Timber.e(e.getMessage());
+
                 }
             }
         },
@@ -497,6 +506,18 @@ public class CalculActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Timber.e(error.toString());
+                        String jsonString = PreferenceManager.
+                                getDefaultSharedPreferences(context).getString("foodJson","");
+                        try{
+                            JSONObject jsonObject = new JSONObject(jsonString);
+                            if(!jsonObject.getJSONArray(JSON_ARRAY_2).equals(null)){
+                                result = jsonObject.getJSONArray(JSON_ARRAY_2);
+                                getAlimentsList(result);
+                            }
+                        }
+                        catch (JSONException f){
+                            Timber.e(f.getMessage());
+                        }
                     }
                 });
         //Creating a request queue
@@ -544,37 +565,49 @@ public class CalculActivity extends AppCompatActivity {
                         try {
                             JSONArray foodsApi = response.getJSONArray("aliments");
                             jsonApi = foodsApi.getJSONObject(0);
-                            food.setGlucide(jsonApi.getDouble("glucide"));
-                            if (!jsonApi.isNull("quantite")) {
-                                food.setQuantiteB(jsonApi.getDouble("quantite"));
-                                Timber.i("JSON quantite " + jsonApi.getDouble("quantite"));
-                            } else {
-                                food.setQuantiteB(1);
-                                Timber.i("JSON quantite Null " + food.getQuantiteB());
-                                if (!(unite.equals("قطعة") || unite.equals("طبق")
-                                        || unite.equals("كاس"))) {
-                                    Toast.makeText(context, "المرجو إدخال الوحدة المناسبة",
-                                            Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-                            }
-                            foodsSelected.add(food);
-                            setListViewHeightBasedOnChildren(listView);
-                            alimentsDuJour.append(name + " : " + q + " " + unite + ";");
-                            Timber.i("QuantiteA : " + food.getQuantiteA());
-                            Timber.i("QuantiteB : " + food.getQuantiteB());
+                            addAlimentInstructions(jsonApi);
                         } catch (JSONException e) {
                             Timber.i(e.getMessage());
                         }
                     }
                 }, new Response.ErrorListener() {
+
                     @Override
                     public void onErrorResponse(VolleyError error) {
+
+                        String jsonString = PreferenceManager.
+                                getDefaultSharedPreferences(context).getString("foodJson","");
+                        try{
+                            JSONObject jsonObject = new JSONObject(jsonString);
+                            if(!jsonObject.getJSONArray(JSON_ARRAY_2).equals(null)){
+                                result = jsonObject.getJSONArray(JSON_ARRAY_2);
+
+                                jsonApi = getJSONObjectByID(result);
+                                addAlimentInstructions(jsonApi);
+                            }
+                        }
+                        catch(JSONException f){
+                            Timber.e(f.getMessage());
+                        }
+                        /*
                         Timber.e("Volly Error", error.toString());
                         NetworkResponse networkResponse = error.networkResponse;
                         if (networkResponse != null) {
                             Timber.e("Status code : " + String.valueOf(networkResponse.statusCode));
                         }
+                        /*String jsonString = PreferenceManager.
+                                getDefaultSharedPreferences(context).getString("foodJson","");
+                        try{
+                            JSONObject jsonObject = new JSONObject(jsonString);
+                            if(!jsonObject.getJSONArray(JSON_ARRAY_2).equals(null)){
+                                result = jsonObject.getJSONArray(JSON_ARRAY_2);
+                                int id= map1.get(name);
+                            }
+                        }
+                        catch (JSONException f){
+                            Timber.e(f.getMessage());
+                        }*/
+
                     }
                 });
         queue.add(jsObjRequest);
@@ -670,6 +703,7 @@ public class CalculActivity extends AppCompatActivity {
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
         listView.setLayoutParams(params);
     }
+
     /* avertissement en cliquant retour */
     @Override
     public void onBackPressed() {
@@ -692,10 +726,52 @@ public class CalculActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
+    JSONObject getJSONObjectByID(JSONArray j){
+
+        for(int i=0;i<j.length();i++) {
+                try {
+                    JSONObject jobj = j.getJSONObject(i);
+                    int id = jobj.getInt("id");
+                    if (id == map1.get(alimentsAutoComp.getText().toString())) {
+                        return jobj;
+                    }
+                }
+                catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+        }
+        return null;
     }
+    void addAlimentInstructions(JSONObject jsonApi) {
+        try{
+        food.setGlucide(jsonApi.getDouble("glucide"));
+        if (!jsonApi.isNull("quantite")) {
+            food.setQuantiteB(jsonApi.getDouble("quantite"));
+            Timber.i("JSON quantite " + jsonApi.getDouble("quantite"));
+        } else {
+            food.setQuantiteB(1);
+            Timber.i("JSON quantite Null " + food.getQuantiteB());
+            if (!(unite.equals("قطعة") || unite.equals("طبق")
+                    || unite.equals("كاس"))) {
+                Toast.makeText(context, "المرجو إدخال الوحدة المناسبة",
+                        Toast.LENGTH_LONG).show();
+                return;
+            }
+        }
+        foodsSelected.add(food);
+        setListViewHeightBasedOnChildren(listView);
+        alimentsDuJour.append(name + " : " + q + " " + unite + ";");
+        Timber.i("QuantiteA : " + food.getQuantiteA());
+        Timber.i("QuantiteB : " + food.getQuantiteB());}
+
+        catch(JSONException g){
+            g.printStackTrace();
+        }
+
+    }
+
+
 
 }

@@ -125,10 +125,13 @@
     <string name="daily_infos"> جدولي اليومي </string>
     <string name="evolutions"> التطلع على تطوراتي </string>
     <string name="dailyRep"> تقريري اليومي </string>
-
-
-
-
+    <string name="send_report">ارسال تقرير</string>
+    <string name="doctor_messages">ملاحظات الطبيب</string>
+    <string name="profilTV"> نسب الأنسولين</string>
+    <string name="petitDej">الإفطار</string>
+    <string name="dej">الغداء</string>
+    <string name="collation">وجبة خفيفة</string>
+    <string name="dinner">العشاء</string>
 
 
 

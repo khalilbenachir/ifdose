@@ -10,6 +10,13 @@
             android:singleLine="true"
             android:title="عنوان الموقع" />
 
+        <Preference
+            android:icon="@drawable/ic_language_black_24dp"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="A propos"/>
+
+
         <EditTextPreference
             android:defaultValue="@string/host_port"
             android:icon="@drawable/ic_language_black_24dp"
@@ -25,6 +32,14 @@
             android:selectAllOnFocus="true"
             android:singleLine="true"
             android:title="البريد الالكتروني للطبيب" />
+
+        <EditTextPreference
+            android:defaultValue="exemple@gmail.com"
+            android:icon="@drawable/ic_email_black_24dp"
+            android:key="medecin_email"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="بريدي الالكتروني" />
 
         <SwitchPreferenceCompat
             android:defaultValue="false"

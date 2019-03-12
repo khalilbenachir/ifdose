@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
-    tools:context="com.ifdose.app.ma.ifdose.app.AddMealActivity">
-
+    tools:context="ma.ifdose.app.AddMealActivity">
 
         <TextView
             android:id="@+id/textView31"
@@ -32,10 +30,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="16dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
         android:elevation="14dp"
-        card_view:cardCornerRadius="0dp"
+        card_view:cardCornerRadius="5dp"
+        card_view:layout_constraintBottom_toBottomOf="parent"
         card_view:layout_constraintEnd_toEndOf="parent"
         card_view:layout_constraintStart_toStartOf="parent"
         card_view:layout_constraintTop_toBottomOf="@+id/textView31">
@@ -43,7 +41,7 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:paddingBottom="16dp"
             android:paddingTop="16dp">
 
@@ -53,26 +51,24 @@
                 style="@style/TextViewTitleStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="4dp"
                 android:layoutDirection="rtl"
                 android:paddingLeft="5dp"
                 android:text="@string/meal_name"
                 android:textDirection="rtl"
-                android:textSize="24sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView31"
-                card_view:layout_constraintTop_toTopOf="@+id/textView31" />
+                card_view:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/foodName"
                 style="@style/EditTextStyle"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:layout_marginTop="8dp"
                 android:layoutDirection="rtl"
                 android:textDirection="rtl"
@@ -85,14 +81,13 @@
                 style="@style/TextViewTitleStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:layout_marginTop="16dp"
                 android:layoutDirection="rtl"
                 android:paddingLeft="5dp"
                 android:text="@string/meal_type"
                 android:textDirection="rtl"
-                android:textSize="24sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/foodName" />
@@ -102,8 +97,8 @@
                 style="@style/SpinnerStyle"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:layout_marginTop="8dp"
                 android:layoutDirection="rtl"
                 android:textDirection="rtl"
@@ -116,14 +111,13 @@
                 style="@style/TextViewTitleStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:layout_marginTop="16dp"
                 android:layoutDirection="rtl"
                 android:paddingLeft="5dp"
                 android:text="@string/meal_qt"
                 android:textDirection="rtl"
-                android:textSize="24sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/foodCategory" />
@@ -134,7 +128,7 @@
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginRight="8dp"
                 android:layout_marginTop="8dp"
                 android:inputType="numberDecimal"
                 android:layoutDirection="rtl"
@@ -150,7 +144,7 @@
                 style="@style/SpinnerStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginTop="8dp"
                 android:entries="@array/unite"
@@ -165,8 +159,8 @@
                 style="@style/TextViewTitleStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:layout_marginTop="16dp"
                 android:layoutDirection="rtl"
                 android:paddingLeft="5dp"
@@ -181,8 +175,8 @@
                 style="@style/EditTextStyle"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:layout_marginTop="8dp"
                 android:inputType="numberDecimal"
                 android:layoutDirection="rtl"
@@ -197,16 +191,18 @@
                 style="@style/Btn250dpStyle"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginTop="16dp"
-                android:background="@color/colorAccent"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/btn_round_edges_purple"
                 android:onClick="onClickAdd"
                 android:text="@string/add_meal"
+                android:textSize="20sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/glucoQtET" />
+                app:layout_constraintTop_toBottomOf="@+id/glucoQtET"
+                card_view:layout_constraintBottom_toBottomOf="parent" />
 
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
 
-</android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>

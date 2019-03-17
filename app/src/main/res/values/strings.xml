@@ -23,22 +23,22 @@
     <string name="title_activity_form" translatable="false">FormActivity</string>
 
     <!--Test env-->
-    <!--<string name="urlCategories" translatable="false">/api/categories</string>-->
-    <!--<string name="urlLogin" translatable="false">/api/users/pass=</string>-->
-    <!--<string name="urlAlim" translatable="false">/api/aliments/id=</string>-->
-    <!--<string name="urlAlims" translatable="false">/api/aliments/category_id=</string>-->
-    <!--<string name="urlPost" translatable="false">/api/aliment/name=</string>-->
-    <!--<string name="urlPostRapport" translatable="false">/api/rapport/id=</string>-->
-    <!--<string name="urlGeneratePDF" translatable="false">/api/sendReport</string>-->
+    <string name="urlCategories" translatable="false">/api/categories</string>
+    <string name="urlLogin" translatable="false">/api/users/pass=</string>
+    <string name="urlAlim" translatable="false">/api/aliments/id=</string>
+    <string name="urlAlims" translatable="false">/api/aliments/category_id=</string>
+    <string name="urlPost" translatable="false">/api/aliment/name=</string>-->
+    <string name="urlPostRapport" translatable="false">/api/rapport/id=</string>
+    <string name="urlGeneratePDF" translatable="false">/api/sendReport</string>
 
-    <!--Prod env-->
+    <!--Prod env
     <string name="urlCategories" translatable="false">/gcalpha/api/categories</string>
     <string name="urlLogin" translatable="false">/gcalpha/api/users/pass=</string>
     <string name="urlAlim" translatable="false">/gcalpha/api/aliments/id=</string>
     <string name="urlAlims" translatable="false">/gcalpha/api/aliments</string>
     <string name="urlPost" translatable="false">/gcalpha/api/aliment/name=</string>
     <string name="urlPostRapport" translatable="false">/gcalpha/api/rapport/id=</string>
-    <string name="urlGeneratePDF" translatable="false">/gcalpha/api/sendReport</string>
+    <string name="urlGeneratePDF" translatable="false">/gcalpha/api/sendReport</string>-->
 
     <string name="pref_previously_started" translatable="false">pref_prev_started_key</string>
     <string name="action_settings">الاٍعدادات</string>

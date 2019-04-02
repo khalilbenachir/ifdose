@@ -91,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         host = sp.getString("host_url", getString(ma.ifdose.app.R.string.host_adr));
-        port = sp.getString("host_port", getString(ma.ifdose.app.R.string.host_port));
+        port = "8000";sp.getString("host_port", getString(ma.ifdose.app.R.string.host_port));
         url = host + ":" + port + getString(ma.ifdose.app.R.string.urlLogin);
 
         if (!sp.contains(getString(ma.ifdose.app.R.string.pref_previously_started))) {

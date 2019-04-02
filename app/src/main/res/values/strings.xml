@@ -9,12 +9,12 @@
     <string name="medecin_email" translatable="false">ifdose@gmail.com</string>
 
     <!--Test env-->
-    <!--<string name="host_adr" translatable="false">http://192.168.1.5</string>-->
-    <!--<string name="host_port" translatable="false">8000</string>-->
+    <string name="host_adr" translatable="false">http://192.168.1.9</string>
+    <string name="host_port" translatable="false">8000</string>
 
-    <!--Prod env-->
+    <!--Prod env
     <string name="host_adr" translatable="false">http://test-gi.ump.ma</string>
-    <string name="host_port" translatable="false">80</string>
+    <string name="host_port" translatable="false">80</string>-->
 
     <!-- Strings related to login -->
     <string name="prompt_password">الكود</string>
@@ -78,6 +78,8 @@
     <string name="categories">أنواع المأكولات :</string>
     <string name="type_here_hint">أكتب هنا</string>
     <string name="quantite">الكمية :</string>
+
+    <string name="delete_btn">احذف</string>
     <string name="add_btn">أضف</string>
     <string name="aliments_menu">قائمة المأكولات :</string>
     <string name="calcul_now_btn">أحسب الآن</string>

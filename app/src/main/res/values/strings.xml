@@ -9,7 +9,7 @@
     <string name="medecin_email" translatable="false">ifdose@gmail.com</string>
 
     <!--Test env-->
-    <string name="host_adr" translatable="false">http://192.168.1.9</string>
+    <string name="host_adr" translatable="false">http://192.168.1.3</string>
     <string name="host_port" translatable="false">8000</string>
 
     <!--Prod env
@@ -23,7 +23,7 @@
     <string name="title_activity_form" translatable="false">FormActivity</string>
 
     <!--Test env-->
-    <string name="urlCategories" translatable="false">/api/categories</string>
+    <string name="urlCategories" translatable="false">/api/aliments</string>
     <string name="urlLogin" translatable="false">/api/users/pass=</string>
     <string name="urlAlim" translatable="false">/api/aliments/id=</string>
     <string name="urlAlims" translatable="false">/api/aliments/category_id=</string>

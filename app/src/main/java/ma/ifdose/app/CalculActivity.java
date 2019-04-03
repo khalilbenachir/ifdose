@@ -120,7 +120,7 @@ public class CalculActivity extends AppCompatActivity {
     private DaoSession daoSession;
     private AlimentDao alimentDao;
     private String name, unite,q;
-    private int id=-1;
+    private int id;
 
     private boolean quantiteBisNull = false;
 
@@ -328,6 +328,7 @@ public class CalculActivity extends AppCompatActivity {
         if ((qauntite.getText().toString().trim().equals(""))) {
             Toast.makeText(context, "المرجو ادخال الكمية", Toast.LENGTH_SHORT).show();
         } else {
+            id=-1;
             JsonFoodURL = host + ":" + port + getString(ma.ifdose.app.R.string.urlAlim);
             food = new Aliment();
             name = alimentsAutoComp.getText().toString();
@@ -338,6 +339,7 @@ public class CalculActivity extends AppCompatActivity {
                 if(name.equals(index)){
                     id=map.get(index);
                 }
+
             }
             System.out.println("***************ID*********"+ id);
             Log.i("Id",String.valueOf(id));
@@ -349,6 +351,7 @@ public class CalculActivity extends AppCompatActivity {
                 getSelectedItem(unite, name, q);
                 System.out.println("DataBase**************");
 
+
 //                foodsSelected.add(food);
 //                if ( quantiteBisNull && (unite.equals("قطعة") || unite.equals("طبق")
 //                        || unite.equals("كاس"))) {
@@ -358,9 +361,12 @@ public class CalculActivity extends AppCompatActivity {
 //                Timber.i("QuantiteA : "+food.getQuantiteA());
 //                Timber.i("QuantiteB : "+food.getQuantiteB());
             } else {
-                List<ma.ifdose.app.db.Aliment> al = alimentDao
-                        .queryBuilder().where(AlimentDao.Properties.Name.eq(name)).list();
-                System.out.println("DataBase**************"+al);
+                ma.ifdose.app.db.Aliment aliment=new ma.ifdose.app.db.Aliment();
+                aliment.setName(food.getNom());
+                aliment.setGlucide(food.getGlucide());
+                aliment.setQuantite(food.getQuantiteB());
+                alimentDao.insert(aliment);
+                System.out.println("DataBase*********DONE*****");
                 //ma.ifdose.app.db.Aliment al1 = al.get(0);
                 //food.setQuantiteB(al1.getQuantite());
                 //food.setGlucide(al1.getGlucide());
@@ -453,7 +459,7 @@ public class CalculActivity extends AppCompatActivity {
                         JSONObject j = null;
                         try {
                             j = new JSONObject(response);
-                            result = j.getJSONArray(JSON_ARRAY);
+                            result = j.getJSONArray(JSON_ARRAY_2);
                             getCategoriesList(result);
                         } catch (JSONException e) {
                             Timber.e(e.getMessage());
@@ -478,6 +484,13 @@ public class CalculActivity extends AppCompatActivity {
                 JSONObject json = j.getJSONObject(i);
                 map.put(json.getString(KEY_NAME), json.getInt(KEY_ID));
                 categories.add(json.getString(KEY_NAME));
+                ma.ifdose.app.db.Aliment aliment =new ma.ifdose.app.db.Aliment();
+                aliment.setName(json.getString(KEY_NAME));
+                aliment.setGlucide(json.getDouble("glucide"));
+                aliment.setQuantite(json.getDouble("quantite"));
+                aliment.setCategory_id(json.getLong("category_id"));
+                alimentDao.insert(aliment);
+
                 System.out.println(categories);
 
             } catch (JSONException e) {
@@ -719,6 +732,13 @@ public class CalculActivity extends AppCompatActivity {
                 return;
             }
         }
+        ma.ifdose.app.db.Aliment aliment=new ma.ifdose.app.db.Aliment();
+        aliment.setName(food.getNom());
+        aliment.setQuantite(food.getQuantiteB());
+        aliment.setGlucide(food.getGlucide());
+        aliment.setCategory_id((long) id);
+        alimentDao.insert(aliment);
+        System.out.println("*********INSERTED*******"+alimentDao.count());
         foodsSelected.add(food.getNom());
         setListViewHeightBasedOnChildren(listView);
         alimentsDuJour.append(name + " : " + q + " " + unite + ";");

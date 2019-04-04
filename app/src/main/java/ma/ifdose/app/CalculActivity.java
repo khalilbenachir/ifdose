@@ -64,6 +64,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.jar.Attributes;
 
 import ma.ifdose.app.ListAdapter.selectedAdapter;
 import ma.ifdose.app.Models.Aliment;
@@ -138,7 +139,7 @@ public class CalculActivity extends AppCompatActivity {
         foodsSelected = new ArrayList<>();
         categories = new ArrayList<String>();
         aliments = new ArrayList<String>();
-        JsonCatURL = host + ":" + port + getString(ma.ifdose.app.R.string.urlCategories);
+        JsonCatURL = host + ":" + port + getString(R.string.urlAliments);
         queue = HttpSingleton.getInstance(this.getBaseContext()).getRequestQueue();
         queue.start();
         spGlycemies = context.getSharedPreferences("glycemies", Context.MODE_PRIVATE);
@@ -165,7 +166,6 @@ public class CalculActivity extends AppCompatActivity {
         final ImageView dropDownArrow2;
        dropDownArrow2 = (ImageView) findViewById(R.id.dropDownImage2);
         //getAliments();
-        getCategories();
         alimentsAutoComp.setThreshold(1);
         count =sp.getInt("count",0);
         final PopupMenu popupMenu=new PopupMenu(this, dropDownArrow2);
@@ -173,13 +173,29 @@ public class CalculActivity extends AppCompatActivity {
         // get the note DAO
         daoSession = ((App) getApplication()).getDaoSession();
         alimentDao = daoSession.getAlimentDao();
+
+        getCategories();
+        System.out.println("+++++++++++++DAO++++++++++++"+alimentDao.count());
+
+
+         final List<String> alimentsdao=new ArrayList<>();
+         for(ma.ifdose.app.db.Aliment aliment:alimentDao.queryBuilder().list()){
+             System.out.println(aliment.getName());
+             alimentsdao.add(aliment.getName());
+         }
+
+
+
+
+
+
         JsonFoodsURL = host + ":" + port + getString(ma.ifdose.app.R.string.urlAlims);
 
        dropDownArrow2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for (int i =0; i < categories.size(); i++)
-                    popupMenu.getMenu().add(Menu.NONE, 1, Menu.NONE, categories.get(i));
+                for (int i =0; i < alimentsdao.size(); i++)
+                    popupMenu.getMenu().add(Menu.NONE, 1, Menu.NONE, alimentsdao.get(i));
 
 
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -196,24 +212,7 @@ public class CalculActivity extends AppCompatActivity {
         });
 
 
-        /*categoriesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                JsonFoodsURL = host + ":" + port + getString(ma.ifdose.app.R.string.urlAlims);
-                switch (parent.getId()) {
-                    case ma.ifdose.app.R.id.categoryFood:
-                        String text = categoriesSpinner.getSelectedItem().toString();
-                        category_id = String.valueOf(map.get(text));
-                        JsonFoodsURL += category_id;
-                        getAliments();
-                        break;
-                }
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });*/
 
         // affichage suivant le type de calcul
         calculTypeSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -245,12 +244,12 @@ public class CalculActivity extends AppCompatActivity {
                     Timber.i("sans livret");
                     Toast.makeText(getBaseContext(), "sans livret", Toast.LENGTH_SHORT).show();
 
-//                    categoryFoodTV.setVisibility(View.GONE);
+                    //categoryFoodTV.setVisibility(View.GONE);
                     foodTV.setVisibility(View.GONE);
                     quantiteGramTV.setVisibility(View.GONE);
 //                    categoriesSpinner.setVisibility(View.GONE);
                     alimentsAutoComp.setVisibility(View.GONE);
-                //    dropDownArrow2.setVisibility(View.GONE);
+                    dropDownArrow2.setVisibility(View.GONE);
                     UniteesSpinner.setVisibility(View.GONE);
                     qauntite.setVisibility(View.GONE);
                     UniteesSpinner.setVisibility(View.GONE);
@@ -269,10 +268,7 @@ public class CalculActivity extends AppCompatActivity {
         });
 
 
-        getCategories();
-        //adapter = new selectedAdapter(foodsSelected, context, mTouchListener);
-        //foodsSelected.add(new Aliment("Khalil","Khalil",11,11));
-        //foodsSelected.add(new Aliment("Khalil","Khalil",11,11));
+        //getCategories();
 
         adapter=new ArrayAdapter(CalculActivity.this,android.R.layout.simple_list_item_1,foodsSelected);
 
@@ -352,14 +348,6 @@ public class CalculActivity extends AppCompatActivity {
                 System.out.println("DataBase**************");
 
 
-//                foodsSelected.add(food);
-//                if ( quantiteBisNull && (unite.equals("قطعة") || unite.equals("طبق")
-//                        || unite.equals("كاس"))) {
-//                    Toast.makeText(context, "المرجو إدخال الوحدة المناسبة", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//                Timber.i("QuantiteA : "+food.getQuantiteA());
-//                Timber.i("QuantiteB : "+food.getQuantiteB());
             } else {
                 ma.ifdose.app.db.Aliment aliment=new ma.ifdose.app.db.Aliment();
                 aliment.setName(food.getNom());
@@ -367,9 +355,6 @@ public class CalculActivity extends AppCompatActivity {
                 aliment.setQuantite(food.getQuantiteB());
                 alimentDao.insert(aliment);
                 System.out.println("DataBase*********DONE*****");
-                //ma.ifdose.app.db.Aliment al1 = al.get(0);
-                //food.setQuantiteB(al1.getQuantite());
-                //food.setGlucide(al1.getGlucide());
                 foodsSelected.add(food.getNom());
                 System.out.println("******foods******"+foodsSelected+"**************");
                 //adapter.notifyDataSetChanged();
@@ -483,111 +468,25 @@ public class CalculActivity extends AppCompatActivity {
             try {
                 JSONObject json = j.getJSONObject(i);
                 map.put(json.getString(KEY_NAME), json.getInt(KEY_ID));
-                categories.add(json.getString(KEY_NAME));
+                //categories.add(json.getString(KEY_NAME));
                 ma.ifdose.app.db.Aliment aliment =new ma.ifdose.app.db.Aliment();
                 aliment.setName(json.getString(KEY_NAME));
                 aliment.setGlucide(json.getDouble("glucide"));
                 aliment.setQuantite(json.getDouble("quantite"));
                 aliment.setCategory_id(json.getLong("category_id"));
-                alimentDao.insert(aliment);
+                alimentDao.insertOrReplace(aliment);
 
-                System.out.println(categories);
+               // System.out.println(categories);
 
             } catch (JSONException e) {
                 Timber.e(e.getMessage());
             }
         }
-        //Setting adapter to show the items in the spinner
-
-        //ArrayAdapter<String> adapterSpinner=new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, categories);
-        //activitePhysiqueSP2.setAdapter(adapterSpinner);
-        //System.out.println("Spinnner ------------*********");
 
     }
 
 
-/*
-    private void getAliments() {
-        System.out.println("*******************TEST*****************"+map1);
-        StringRequest stringRequest = new StringRequest(JsonFoodsURL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                JSONObject j = null;
-                try {
-                    //Parsing the fetched Json String to JSON Object
-                    j = new JSONObject(response);
-                    //Storing the Array of JSON String to our JSON Array
-                    result = j.getJSONArray(JSON_ARRAY_2);
-                    System.out.println("*******************TEST*****************"+result);
-                    getAlimentsList(result);
-                    PreferenceManager.getDefaultSharedPreferences(context).edit()
-                                .putString("foodJson",j.toString()).apply();
 
-                } catch (JSONException e) {
-                    Timber.e(e.getMessage());
-
-                }
-            }
-        },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Timber.e(error.toString());
-                        String jsonString = PreferenceManager.
-                                getDefaultSharedPreferences(context).getString("foodJson","");
-                        try{
-                            JSONObject jsonObject = new JSONObject(jsonString);
-                            if(!jsonObject.getJSONArray(JSON_ARRAY_2).equals(null)){
-                                result = jsonObject.getJSONArray(JSON_ARRAY_2);
-                                getAlimentsList(result);
-                            }
-                        }
-                        catch (JSONException f){
-                            Timber.e(f.getMessage());
-                        }
-                    }
-                });
-        //Creating a request queue
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        requestQueue.add(stringRequest);
-    }
-
-    private void getAlimentsList(JSONArray j) {
-        System.out.println("----------------Test---------");
-
-        try {
- //           aliments.clear();
- //           map1.clear();
-
-            for (int i = 0; i < j.length(); i++) {
-                JSONObject json = j.getJSONObject(i);
-                System.out.println("----------------Test---------"+json.getString(KEY_NAME));
-                map1.put(json.getString(KEY_NAME), json.getInt(KEY_ID));
-                aliments.add(json.getString(KEY_NAME));
-            }
-
-            List<ma.ifdose.app.db.Aliment> alimentsDB = alimentDao
-                    .queryBuilder()
-                    */
-/*.where(AlimentDao.Properties.Category_id.eq(category_id))*//*
-
-                    .list();
-
-            Timber.i("Local aliments : " + alimentsDB.size());
-            for (ma.ifdose.app.db.Aliment al : alimentsDB) {
-                Timber.i("Local " + al.getName() + " - " + al.getCategory_id());
-                map1.put(al.getName(), -1);
-                aliments.add(al.getName());
-            }
-
-            //Setting adapter to show the items in the spinner
-            alimentsAutoComp.setAdapter(new ArrayAdapter<String>(context,
-                    android.R.layout.simple_dropdown_item_1line, aliments));
-        } catch (Exception e) {
-            Timber.e(e.getMessage());
-        }
-    }
-*/
 
     private void getSelectedItem(final String unite, final String name, final String q) {
         final RequestQueue queue = Volley.newRequestQueue(context);
@@ -622,24 +521,7 @@ public class CalculActivity extends AppCompatActivity {
                         catch(JSONException f){
                             Timber.e(f.getMessage());
                         }
-                        /*
-                        Timber.e("Volly Error", error.toString());
-                        NetworkResponse networkResponse = error.networkResponse;
-                        if (networkResponse != null) {
-                            Timber.e("Status code : " + String.valueOf(networkResponse.statusCode));
-                        }
-                        /*String jsonString = PreferenceManager.
-                                getDefaultSharedPreferences(context).getString("foodJson","");
-                        try{
-                            JSONObject jsonObject = new JSONObject(jsonString);
-                            if(!jsonObject.getJSONArray(JSON_ARRAY_2).equals(null)){
-                                result = jsonObject.getJSONArray(JSON_ARRAY_2);
-                                int id= map1.get(name);
-                            }
-                        }
-                        catch (JSONException f){
-                            Timber.e(f.getMessage());
-                        }*/
+
 
                     }
                 });

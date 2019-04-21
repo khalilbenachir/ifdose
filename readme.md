@@ -53,3 +53,4 @@ Modifier le champ bugfender_app_key avec celui de vous
 - activer l'option Paramètres > Ecran de vérouillage/Sécurité > Sources unconnues.
 - installer l'apk
 
+# ifdose

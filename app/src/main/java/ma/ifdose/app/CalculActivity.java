@@ -173,8 +173,8 @@ public class CalculActivity extends AppCompatActivity {
         // get the note DAO
         daoSession = ((App) getApplication()).getDaoSession();
         alimentDao = daoSession.getAlimentDao();
-
-        getCategories();
+        if(alimentDao.count()==0){
+        getCategories();}
         System.out.println("+++++++++++++DAO++++++++++++"+alimentDao.count());
 
 
@@ -464,6 +464,7 @@ public class CalculActivity extends AppCompatActivity {
 
     private void getCategoriesList(JSONArray j) {
         JSONObject jsn = new JSONObject();
+        alimentDao.deleteAll();
         for (int i = 0; i < j.length(); i++) {
             try {
                 JSONObject json = j.getJSONObject(i);
